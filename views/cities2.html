@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>User Profile</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        </style>
+            <style>
+                .page {
+                    display: none;
+                }
+            </style>
+</head>
+
+<body>
+    <!--div>{{.message}}</div-->
+    <table>
+        <tr>
+            <th>num</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country Code</th>
+            <th>District</th>
+            <th>Population</th>
+        </tr>
+        {{ range $idx,$city := .pageCity.Cities }}
+        <tr>
+            <td>{{ $idx }}</td>
+            <td>{{ $city.ID }}</td>
+            <td>{{ $city.Name }}</td>
+            <td>{{ $city.CountryCode }}</td>
+            <td>{{ $city.District }}</td>
+            <td>{{ $city.Population }}</td>
+        </tr>
+        {{ end }}
+    </table>
+   <div><a href="/cities?page=1">1</a> <a href="/cities?page=2">2</a></div>
+
+</body>
+
+</html>
