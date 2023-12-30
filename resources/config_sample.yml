@@ -1,0 +1,2 @@
+---update credential and change the file to config.yml
+database: aaaaa:aaaaa@tcp(127.0.0.1:3306)/dbaaaaa

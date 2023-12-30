@@ -3,6 +3,7 @@ package dao
 import (
 	"database/sql"
 	"fmt"
+	"mycity/global"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -10,7 +11,7 @@ import (
 var DB *sql.DB
 
 func InitDB() {
-	DB, _ = sql.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/world")
+	DB, _ = sql.Open("mysql", global.Conf.Database)
 
 	DB.SetMaxIdleConns(2)
 	fmt.Println("open mysql success")
