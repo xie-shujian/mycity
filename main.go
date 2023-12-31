@@ -3,7 +3,6 @@ package main
 import (
 	"mycity/control2"
 	"mycity/controls3"
-	"mycity/dao2"
 	"mycity/global"
 	"net/http"
 
@@ -12,11 +11,11 @@ import (
 
 func main() {
 	global.Init()
-	//main4()
+	main4()
 }
 
 func main4() {
-	dao2.InitGormDB()
+	//global.InitGormDB()
 	app := iris.New()
 	app.RegisterView(iris.HTML("./views", ".html"))
 	app.HandleDir("/statics", "./statics")
@@ -25,7 +24,7 @@ func main4() {
 	app.Listen(":8080")
 }
 func main3() {
-	dao2.InitGormDB()
+	global.InitGormDB()
 	app := iris.New()
 	app.RegisterView(iris.HTML("./views", ".html"))
 	app.Get("/cities", controls3.CityPage2)
@@ -33,7 +32,7 @@ func main3() {
 }
 
 func main2() {
-	dao2.InitGormDB()
+	global.InitGormDB()
 	// var cities []entity.City
 
 	// dao2.DB2.Limit(10).Offset(10).Find(&cities)

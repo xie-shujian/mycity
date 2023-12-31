@@ -3,22 +3,24 @@ function cityPage(CurrentPage) {
         .then(response => response.json())
         .then(data => {
             //   console.log(data);
-            let mytrs = "";
-            for (let i = 0; i < data.cities.length; i++) {
-                let idx = i + 1 + (data.page.current_page - 1) * data.page.page_size;
-                mytrs += "<tr>"
-                    + "<td>" + idx + "</td>"
-                    + "<td>" + data.cities[i].id + "</td>"
-                    + "<td>" + data.cities[i].name + "</td>"
-                    + "<td>" + data.cities[i].countryCode + "</td>"
-                    + "<td>" + data.cities[i].district + "</td>"
-                    + "<td>" + data.cities[i].population + "</td>"
-                    + "</tr>"
-                    ;
-            }
-            document.querySelector("#dataList").innerHTML = mytrs;
+            createPageCity(data.cities);
             createPageNav(data.page)
         });
+}
+
+function createPageCity(cities){
+    let mytrs = "";
+    for (let i = 0; i < cities.length; i++) {
+        mytrs += "<tr>"
+            + "<td>" + cities[i].id + "</td>"
+            + "<td>" + cities[i].name + "</td>"
+            + "<td>" + cities[i].country_code + "</td>"
+            + "<td>" + cities[i].district + "</td>"
+            + "<td>" + cities[i].population + "</td>"
+            + "</tr>"
+            ;
+    }
+    document.querySelector("#dataList").innerHTML = mytrs;
 }
 
 function createPageNav(page) {
@@ -63,8 +65,7 @@ function loadOtherPage(event) {
     //disabled
     if(event.target.classList.contains("disabled")){
         return;
-    }
-    
+    }    
 
     let slastPage = document.querySelector("#pageList").querySelector(".active").textContent;
     let iLastPage = parseInt(slastPage)
